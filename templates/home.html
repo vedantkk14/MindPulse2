@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Epileptic Seizure Detection - Home</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='home_style.css') }}"
+    />
+  </head>
+
+  <body>
+    <!-- Progress bar -->
+    <div class="progress-bar"></div>
+
+    <!-- Floating particles -->
+    <div class="particles"></div>
+
+    <header>
+      <h1>Epileptic Seizure Detection</h1>
+      <p>
+        Upload EEG data in CSV format and detect seizure risk instantly using AI
+      </p>
+      <!-- FIXED LINK -->
+      <a href="{{ url_for('predict') }}" class="btn">Go to Prediction Tool</a>
+    </header>
+
+    <section>
+      <h2>About the Project</h2>
+      <div class="about-text">
+        This project uses advanced Machine Learning techniques (Support Vector
+        Machines with PCA preprocessing) to predict whether a person is likely
+        to experience an epileptic seizure based on EEG signal readings. Our
+        model is trained on a dataset containing 178 features and achieves
+        outstanding accuracy with state-of-the-art performance metrics.
+      </div>
+    </section>
+
+    <section>
+      <h2>How It Works</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-icon">
+            <img
+              src="https://img.icons8.com/ios-filled/50/upload.png"
+              alt="Upload"
+            />
+          </div>
+          <h4>Step 1: Upload Data</h4>
+          <p>
+            Upload a CSV file containing a single row with 178 EEG features
+            extracted from brain signal recordings.
+          </p>
+        </div>
+        <div class="step">
+          <div class="step-icon">
+            <img
+              src="https://img.icons8.com/ios-filled/50/processing.png"
+              alt="Processing"
+            />
+          </div>
+          <h4>Step 2: Data Processing</h4>
+          <p>
+            The system applies standardization and Principal Component Analysis
+            (PCA) transformation to optimize your data for prediction.
+          </p>
+        </div>
+        <div class="step">
+          <div class="step-icon">
+            <img
+              src="https://img.icons8.com/ios-filled/50/artificial-intelligence.png"
+              alt="Prediction"
+            />
+          </div>
+          <h4>Step 3: AI Prediction</h4>
+          <p>
+            Our trained Support Vector Machine model analyzes the processed data
+            and provides instant seizure likelihood assessment.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Model Performance</h2>
+      <div class="metrics">
+        <div class="metric">
+          <h3 data-target="97">0</h3>
+          <p>Accuracy</p>
+        </div>
+        <div class="metric">
+          <h3 data-target="94">0</h3>
+          <p>Precision</p>
+        </div>
+        <div class="metric">
+          <h3 data-target="93">0</h3>
+          <p>Recall</p>
+        </div>
+        <div class="metric">
+          <h3 data-target="95">0</h3>
+          <p>F1-Score</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="disclaimer">
+        <strong>⚠️ Medical Disclaimer:</strong> This tool is designed for
+        research and educational purposes only. It should not be used as a
+        substitute for professional medical diagnosis, treatment, or advice.
+        Always consult with qualified healthcare professionals for medical
+        concerns.
+      </div>
+    </section>
+
+    <footer>
+      <p>
+        2025 Epileptic Seizure Detection Project | Developed by
+        <strong>Vedant Kolhapure</strong>
+      </p>
+      <p style="margin-top: 10px; opacity: 0.8; font-size: 0.9rem">
+        Advancing healthcare through artificial intelligence and machine
+        learning
+      </p>
+    </footer>
+
+    <!-- Back to top button -->
+    <a href="#" class="back-to-top">↑</a>
+
+    <script src="{{ url_for('static', filename='home_script.js') }}"></script>
+  </body>
+</html>

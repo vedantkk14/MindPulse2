@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Epileptic Seizure Prediction Tool</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='prediction_pg_style.css') }}"
+    />
+  </head>
+
+    <body>
+    <!-- Floating particles -->
+    <div class="particles"></div>
+
+    <div class="container">
+      <header class="header">
+        <div class="header-content">
+          <div class="medical-icon">
+            <i class="fas fa-brain"></i>
+          </div>
+          <h1>Epileptic Seizure Detection</h1>
+          <p class="subtitle">AI-Powered EEG Analysis & Prediction System</p>
+        </div>
+      </header>
+
+      <main class="main-content">
+        <div class="info-section">
+          <h3><i class="fas fa-info-circle"></i> About This System</h3>
+          <p>
+            This advanced machine learning system analyzes EEG data to detect
+            potential epileptic seizure patterns. The system uses Support Vector
+            Machine (SVM) classification with Principal Component Analysis (PCA)
+            for accurate prediction.
+          </p>
+          <p>
+            Upload your EEG data file in the specified format to receive an
+            instant analysis with detailed probability scores and medical
+            insights.
+          </p>
+        </div>
+
+        <div class="requirements">
+          <h4><i class="fas fa-exclamation-triangle"></i> File Requirements</h4>
+          <ul>
+            <li>File format: CSV (.csv) only</li>
+            <li>Dimensions: Exactly 1 row and 178 columns</li>
+            <li>Data type: Numerical EEG feature values</li>
+            <li>No headers or labels required</li>
+          </ul>
+        </div>
+
+        <form method="POST" enctype="multipart/form-data" id="uploadForm">
+          <div class="upload-section" id="uploadSection">
+            <div class="file-input-wrapper">
+              <input
+                type="file"
+                name="file"
+                class="file-input"
+                id="fileInput"
+                accept=".csv"
+                required
+              />
+              <button type="button" class="upload-btn">
+                <i class="fas fa-upload"></i>
+                Choose CSV File
+              </button>
+            </div>
+            <p class="upload-text">or drag and drop your CSV file here</p>
+
+            <div class="selected-file" id="selectedFile">
+              <i class="fas fa-file-csv"></i>
+              <span id="fileName">No file selected</span>
+            </div>
+          </div>
+
+          <center>
+            <button type="submit" class="submit-btn" id="submitBtn" disabled>
+              <i class="fas fa-microscope"></i>
+              Analyze EEG Data
+            </button>
+          </center>
+        </form>
+
+        <div class="loading" id="loading">
+          <div class="spinner"></div>
+          <p class="loading-text">Analyzing EEG data... Please wait.</p>
+        </div>
+
+        {% if prediction_text %}
+        <div
+          class="result-section show {% if '⚠️' in prediction_text %}result-positive{% elif '✅' in prediction_text %}result-negative{% else %}result-error{% endif %}"
+          id="resultSection"
+        >
+          <div style="font-size: 2.5rem; margin-bottom: 20px">
+            {% if '⚠️' in prediction_text %}
+            <i class="fas fa-exclamation-triangle"></i>
+            {% elif '✅' in prediction_text %}
+            <i class="fas fa-check-circle"></i>
+            {% else %}
+            <i class="fas fa-exclamation-circle"></i>
+            {% endif %}
+          </div>
+          {{ prediction_text }}
+        </div>
+        {% endif %}
+
+        <div class="disclaimer">
+          <h4><i class="fas fa-shield-alt"></i> Medical Disclaimer</h4>
+          <p>
+            <strong>Important:</strong> This tool is for research and
+            educational purposes only. It should not be used as a substitute for
+            professional medical diagnosis or treatment. Always consult with
+            qualified healthcare professionals for medical advice and diagnosis.
+            The predictions made by this system should be validated by medical
+            experts before any clinical decision-making.
+          </p>
+        </div>
+      </main>
+
+      <footer class="footer">
+        <p>
+          <i class="fas fa-heartbeat"></i> Advanced EEG Analysis Technology
+          <i class="fas fa-heartbeat"></i>
+        </p>
+        <p>
+          2025 Epileptic Seizure Detection System | Developed by<strong
+            >Vedant Kolhapure</strong
+          >
+        </p>
+      </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='prediction_pg_script.js') }}"></script>
+  </body>
+</html>
